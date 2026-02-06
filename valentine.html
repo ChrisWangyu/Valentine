@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background-image: url("94aedbe86778c766e0d88a25271ab220.jpg");
+      background-repeat: repeat;
+      background-size: 280px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: rgba(224, 85, 159, 0.95);
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      max-width: 420px;
+      text-align: center;
+      animation: popIn 0.8s ease;
+      z-index: 2;
+    }
+
+    h1 {
+      color: #e6005c;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+    }
+
+    .yes {
+      background-color: #ff4d88;
+      color: white;
+    }
+
+    .no {
+      background-color: #ccc;
+    }
+
+    .details {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      animation: fadeIn 1s ease;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: 10px;
+      font-size: 45px;
+      animation: floatUp linear infinite;
+      opacity: 3;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1 id="question">Will you be my Valentine’s date? 💖</h1>
+
+    <button class="yes" onclick="sayYes()">Yes 💕</button>
+    <button class="no" onclick="sayNo()">No 🙈</button>
+
+    <div class="details" id="details">
+      <p>📅 <strong>Date:</strong> February 11</p>
+      <p>⏰ <strong>Time:</strong> 11:00 AM</p>
+      <p>📍 <strong>Location:</strong> Secret spot</p>
+      <p>💌 I can’t wait to spend this day with you.</p>
+    </div>
+  </div>
+
+  <script>
+    function sayYes() {
+      document.getElementById("question").innerText = "YAY!! It’s a date 💘🥰";
+      document.querySelector(".yes").style.display = "none";
+      document.querySelector(".no").style.display = "none";
+      document.getElementById("details").style.display = "block";
+      createHearts();
+    }
+
+    function sayNo() {
+      alert("Hehe sorry try again, I don't thank no as an answer!");
+      location.reload();
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+      }
+    }
+  </script>
+
+</body>
+</html>
